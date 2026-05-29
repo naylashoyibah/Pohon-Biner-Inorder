@@ -1,46 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Traversal Inorder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversal Inorder Pohon Biner</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <body>
 
 <div class="container">
 
     <h1>🌳 Traversal Inorder Pohon Biner</h1>
 
     <p>
-        Traversal Inorder adalah metode penelusuran pohon biner
-        dengan urutan <b>Kiri → Root → Kanan</b>.
+        Traversal Inorder adalah metode penelusuran pohon biner dengan urutan:
+        <b>Kiri → Root → Kanan</b>
     </p>
 
-    <input type="text" id="nodes"
+    <input
+        type="text"
+        id="nodes"
         placeholder="Contoh: A,B,C,D,E">
-
-    <br><br>
 
     <button onclick="prosesInorder()">
         PROSES
     </button>
 
-    <h3>Hasil Traversal:</h3>
+    <div class="card">
+        <h2>🌳 Visualisasi Pohon</h2>
+        <div id="treeContainer"></div>
+    </div>
 
-    <p id="hasil"></p>
+    <div class="card">
+        <h2>📌 Langkah Traversal Inorder</h2>
+        <div id="langkah"></div>
+    </div>
 
-    <p>
-
-    <b>Urutan Traversal Inorder:</b><br>
-    Kiri → Root → Kanan
-    </p>
+    <div class="card">
+        <h2>✅ Hasil Traversal Inorder</h2>
+        <div id="hasil"></div>
+    </div>
 
 </div>
 
 <script src="script.js"></script>
-
-</body>
 
 </body>
 </html>
