@@ -1,44 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traversal Inorder Pohon Biner</title>
+    <title>Binary Tree Inorder Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🌳 Traversal Inorder Pohon Biner</h1>
+    <div class="hero">
 
-    <p>
-        Traversal Inorder adalah metode penelusuran pohon biner dengan urutan:
-        <b>Kiri → Root → Kanan</b>
-    </p>
+        <h1>🌳 Binary Tree Inorder Simulator</h1>
 
-    <input
-        type="text"
-        id="nodes"
-        placeholder="Contoh: A,B,C,D,E">
+        <p>
+            Simulasi Traversal Inorder pada Pohon Biner
+        </p>
 
-    <button onclick="prosesInorder()">
-        PROSES
-    </button>
-
-    <div class="card">
-        <h2>🌳 Visualisasi Pohon</h2>
-        <div id="treeContainer"></div>
     </div>
 
-    <div class="card">
-        <h2>📌 Langkah Traversal Inorder</h2>
-        <div id="langkah"></div>
+    <div class="materi">
+
+        <h2>📚 Pengertian Traversal Inorder</h2>
+
+        <p>
+            Traversal Inorder adalah metode penelusuran node pada pohon biner
+            dengan urutan:
+        </p>
+
+        <h3>Kiri → Root → Kanan</h3>
+
+        <p>
+            Artinya node sebelah kiri dikunjungi terlebih dahulu,
+            kemudian akar (root),
+            lalu node sebelah kanan.
+        </p>
+
     </div>
 
-    <div class="card">
+    <div class="input-box">
+
+        <h2>💻 Simulasi Traversal</h2>
+
+        <input
+            type="text"
+            id="nodes"
+            placeholder="Contoh: A,B,C,D,E,F,G">
+
+        <button onclick="prosesInorder()">
+            PROSES
+        </button>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h2>🌳 Visualisasi Pohon</h2>
+
+            <div id="placeholderTree">
+                🌱 Masukkan node lalu klik PROSES
+                untuk menampilkan pohon biner
+            </div>
+
+            <svg id="treeSvg"></svg>
+
+        </div>
+
+        <div class="card">
+
+            <h2>📌 Langkah Traversal Inorder</h2>
+
+            <div id="langkah">
+                Belum ada proses traversal.
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hasil-card">
+
         <h2>✅ Hasil Traversal Inorder</h2>
-        <div id="hasil"></div>
+
+        <div id="hasil">
+            -
+        </div>
+
     </div>
 
 </div>

@@ -1,15 +1,27 @@
 function prosesInorder(){
 
     let input =
-        document.getElementById("nodes").value;
+    document.getElementById("nodes").value;
 
-    if(input.trim()===""){
+    if(input.trim() === ""){
+
         alert("Masukkan node terlebih dahulu!");
+
         return;
     }
 
     let data =
-        input.split(",").map(item => item.trim());
+    input.split(",").map(
+        item => item.trim()
+    );
+
+    document
+    .getElementById("placeholderTree")
+    .style.display = "none";
+
+    document
+    .getElementById("treeSvg")
+    .style.height = "450px";
 
     gambarPohon(data);
 
@@ -26,7 +38,9 @@ function prosesInorder(){
         inorder(2 * index + 1);
 
         langkah.push(
-            nomor + ". Kunjungi node " + data[index]
+            nomor +
+            ". Kunjungi node " +
+            data[index]
         );
 
         hasil.push(data[index]);
@@ -38,56 +52,120 @@ function prosesInorder(){
 
     inorder(0);
 
-    document.getElementById("hasil").innerHTML =
-        hasil.join(" → ");
+    document
+    .getElementById("hasil")
+    .innerHTML =
+    hasil.join(" → ");
 
-    document.getElementById("langkah").innerHTML =
-        langkah.join("<br>");
+    document
+    .getElementById("langkah")
+    .innerHTML =
+    langkah.join("<br>");
 }
 
 function gambarPohon(data){
 
-    const tree =
-        document.getElementById("treeContainer");
+    const svg =
+    document.getElementById("treeSvg");
 
-    tree.innerHTML = "";
+    svg.innerHTML = "";
 
-    let level = 0;
-    let index = 0;
+    const width = 1000;
+    const levelHeight = 100;
 
-    while(index < data.length){
+    let posisi = [];
 
-        let jumlahNode =
-            Math.pow(2, level);
+    for(let i=0;i<data.length;i++){
 
-        let row =
-            document.createElement("div");
+        let level =
+        Math.floor(Math.log2(i + 1));
 
-        row.className =
-            "tree-level";
+        let posisiDalamLevel =
+        i - (Math.pow(2, level) - 1);
 
-        for(
-            let i=0;
-            i<jumlahNode && index<data.length;
-            i++
-        ){
+        let jumlahNodeLevel =
+        Math.pow(2, level);
 
-            let node =
-                document.createElement("div");
+        let x =
+        width /
+        (jumlahNodeLevel + 1)
+        *
+        (posisiDalamLevel + 1);
 
-            node.className =
-                "tree-node";
+        let y =
+        70 +
+        (level * levelHeight);
 
-            node.innerText =
-                data[index];
+        posisi.push({
+            x:x,
+            y:y,
+            value:data[i]
+        });
+    }
 
-            row.appendChild(node);
+    for(let i=0;i<data.length;i++){
 
-            index++;
+        let parent =
+        posisi[i];
+
+        let left =
+        2 * i + 1;
+
+        let right =
+        2 * i + 2;
+
+        if(left < data.length){
+
+            let child =
+            posisi[left];
+
+            svg.innerHTML += `
+            <line
+                x1="${parent.x}"
+                y1="${parent.y}"
+                x2="${child.x}"
+                y2="${child.y}"
+                class="tree-line"
+            />
+            `;
         }
 
-        tree.appendChild(row);
+        if(right < data.length){
 
-        level++;
+            let child =
+            posisi[right];
+
+            svg.innerHTML += `
+            <line
+                x1="${parent.x}"
+                y1="${parent.y}"
+                x2="${child.x}"
+                y2="${child.y}"
+                class="tree-line"
+            />
+            `;
+        }
     }
+
+    posisi.forEach(node => {
+
+        svg.innerHTML += `
+
+        <circle
+            cx="${node.x}"
+            cy="${node.y}"
+            r="28"
+            class="node-circle"
+        />
+
+        <text
+            x="${node.x}"
+            y="${node.y}"
+            class="node-text"
+        >
+            ${node.value}
+        </text>
+
+        `;
+    });
 }

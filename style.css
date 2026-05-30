@@ -1,102 +1,270 @@
-body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#4f46e5,#7c3aed);
+*{
     margin:0;
-    padding:20px;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #065F46,
+    #10B981,
+    #6EE7B7
+    );
+
+    min-height:100vh;
+
+    padding:30px;
 }
 
 .container{
-    max-width:900px;
+    max-width:1300px;
     margin:auto;
+}
+
+.hero{
+
+    text-align:center;
+    color:white;
+
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:20px;
+}
+
+.materi{
+
     background:white;
-    padding:30px;
+
+    padding:25px;
+
     border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
 }
 
-h1{
-    text-align:center;
-    color:#4f46e5;
+.materi h2{
+    color:#166534;
+    margin-bottom:10px;
 }
 
-p{
+.materi h3{
+
+    color:#16A34A;
+
     text-align:center;
+
+    margin:15px 0;
+}
+
+.input-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+}
+
+.input-box h2{
+    margin-bottom:15px;
 }
 
 input{
+
     width:80%;
-    padding:12px;
-    border:2px solid #4f46e5;
+
+    padding:14px;
+
+    border:2px solid #16A34A;
+
     border-radius:10px;
-    display:block;
-    margin:auto;
+
     font-size:16px;
 }
 
 button{
-    display:block;
-    margin:15px auto;
-    padding:12px 25px;
+
+    margin-top:15px;
+
+    padding:12px 30px;
+
     border:none;
-    background:#4f46e5;
-    color:white;
+
     border-radius:10px;
-    cursor:pointer;
+
+    background:#16A34A;
+
+    color:white;
+
     font-size:16px;
+
+    cursor:pointer;
+
+    transition:0.3s;
 }
 
 button:hover{
-    background:#3730a3;
+
+    background:#15803D;
+
+    transform:scale(1.05);
 }
 
-.card{
-    background:#f8fafc;
-    margin-top:20px;
-    padding:20px;
-    border-radius:15px;
-}
+.grid{
 
-.card h2{
-    text-align:center;
-    color:#4f46e5;
-}
+    display:grid;
 
-#hasil{
-    font-size:22px;
-    font-weight:bold;
-    text-align:center;
-    color:#16a34a;
-}
+    grid-template-columns:2fr 1fr;
 
-#langkah{
-    line-height:2;
-    font-size:17px;
-}
-
-/* Visualisasi Pohon */
-
-#treeContainer{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
     gap:20px;
 }
 
-.tree-level{
-    display:flex;
-    justify-content:center;
-    gap:50px;
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+
+    transition:0.3s;
 }
 
-.tree-node{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#4f46e5;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+.card h2{
+    margin-bottom:20px;
+}
+
+#placeholderTree{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    color:#64748B;
+
+    font-size:20px;
+}
+
+#treeSvg{
+
+    width:100%;
+
+    height:0;
+
+    background:#F8FAFC;
+
+    border-radius:15px;
+
+    transition:0.5s;
+}
+
+#langkah{
+
+    line-height:2;
+
+    font-size:17px;
+}
+
+.hasil-card{
+
+    margin-top:25px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+}
+
+#hasil{
+
+    margin-top:15px;
+
+    font-size:24px;
+
     font-weight:bold;
-    box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+    color:#15803D;
+}
+
+/* TREE */
+
+.tree-line{
+
+    stroke:#166534;
+
+    stroke-width:3;
+}
+
+.node-circle{
+
+    fill:#22C55E;
+
+    stroke:#166534;
+
+    stroke-width:2;
+}
+
+.node-text{
+
+    fill:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    text-anchor:middle;
+
+    dominant-baseline:middle;
+}
+
+@media(max-width:900px){
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+input{
+    width:95%;
+}
+
+.hero h1{
+    font-size:32px;
+}
+
 }
