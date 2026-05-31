@@ -1,27 +1,16 @@
-function prosesInorder(){
+function prosesInorder() {
 
-    let input =
-    document.getElementById("nodes").value;
+    let input = document.getElementById("nodes").value;
 
-    if(input.trim() === ""){
-
+    if (input.trim() === "") {
         alert("Masukkan node terlebih dahulu!");
-
         return;
     }
 
-    let data =
-    input.split(",").map(
-        item => item.trim()
-    );
+    let data = input.split(",").map(item => item.trim());
 
-    document
-    .getElementById("placeholderTree")
-    .style.display = "none";
-
-    document
-    .getElementById("treeSvg")
-    .style.height = "450px";
+    document.getElementById("placeholderTree").style.display = "none";
+    document.getElementById("treeSvg").style.height = "500px";
 
     gambarPohon(data);
 
@@ -29,9 +18,9 @@ function prosesInorder(){
     let langkah = [];
     let nomor = 1;
 
-    function inorder(index){
+    function inorder(index) {
 
-        if(index >= data.length){
+        if (index >= data.length) {
             return;
         }
 
@@ -52,72 +41,75 @@ function prosesInorder(){
 
     inorder(0);
 
-    document
-    .getElementById("hasil")
-    .innerHTML =
-    hasil.join(" → ");
+    document.getElementById("hasil").innerHTML =
+        hasil.join(" → ");
 
-    document
-    .getElementById("langkah")
-    .innerHTML =
-    langkah.join("<br>");
+    document.getElementById("langkah").innerHTML =
+        langkah.join("<br>");
 }
 
-function gambarPohon(data){
+function gambarPohon(data) {
 
     const svg =
-    document.getElementById("treeSvg");
+        document.getElementById("treeSvg");
 
     svg.innerHTML = "";
 
-    const width = 1000;
-    const levelHeight = 100;
+    // otomatis menyesuaikan panjang teks
+    const width = Math.max(
+        1200,
+        data.join("").length * 30
+    );
+
+    const levelHeight = 110;
+
+    svg.setAttribute(
+        "viewBox",
+        `0 0 ${width} 550`
+    );
 
     let posisi = [];
 
-    for(let i=0;i<data.length;i++){
+    for (let i = 0; i < data.length; i++) {
 
         let level =
-        Math.floor(Math.log2(i + 1));
+            Math.floor(Math.log2(i + 1));
 
         let posisiDalamLevel =
-        i - (Math.pow(2, level) - 1);
+            i - (Math.pow(2, level) - 1);
 
         let jumlahNodeLevel =
-        Math.pow(2, level);
+            Math.pow(2, level);
 
         let x =
-        width /
-        (jumlahNodeLevel + 1)
-        *
-        (posisiDalamLevel + 1);
+            width /
+            (jumlahNodeLevel + 1)
+            *
+            (posisiDalamLevel + 1);
 
         let y =
-        70 +
-        (level * levelHeight);
+            80 +
+            (level * levelHeight);
 
         posisi.push({
-            x:x,
-            y:y,
-            value:data[i]
+            x: x,
+            y: y,
+            value: data[i]
         });
     }
 
-    for(let i=0;i<data.length;i++){
+    // GARIS
 
-        let parent =
-        posisi[i];
+    for (let i = 0; i < data.length; i++) {
 
-        let left =
-        2 * i + 1;
+        let parent = posisi[i];
 
-        let right =
-        2 * i + 2;
+        let left = 2 * i + 1;
+        let right = 2 * i + 2;
 
-        if(left < data.length){
+        if (left < data.length) {
 
-            let child =
-            posisi[left];
+            let child = posisi[left];
 
             svg.innerHTML += `
             <line
@@ -130,10 +122,9 @@ function gambarPohon(data){
             `;
         }
 
-        if(right < data.length){
+        if (right < data.length) {
 
-            let child =
-            posisi[right];
+            let child = posisi[right];
 
             svg.innerHTML += `
             <line
@@ -147,25 +138,29 @@ function gambarPohon(data){
         }
     }
 
+    // NODE
+
     posisi.forEach(node => {
 
-        svg.innerHTML += `
+        let radius = Math.max(
+            35,
+            node.value.length * 9
+        );
 
+        svg.innerHTML += `
         <circle
             cx="${node.x}"
             cy="${node.y}"
-            r="28"
+            r="${radius}"
             class="node-circle"
         />
 
         <text
             x="${node.x}"
             y="${node.y}"
-            class="node-text"
-        >
+            class="node-text">
             ${node.value}
         </text>
-
         `;
     });
 }
